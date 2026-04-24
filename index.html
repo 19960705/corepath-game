@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>芯径 · 太虚幻境 CorePath</title>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="stage" aria-label="CorePath Red Chamber playable prototype">
+        <div id="game-root" class="game-root"></div>
+        <div id="atmosphere-root" class="atmosphere-root" aria-hidden="true"></div>
+        <div class="hud hud-top">
+          <div class="brand">
+            <span class="brand-mark">玉</span>
+            <div>
+              <strong>芯径 · 太虚</strong>
+              <small>CorePath</small>
+            </div>
+          </div>
+          <div class="objective">
+            <span id="biome-name">生成中</span>
+            <strong id="objective-text">靠近梦节点，替太虚册落下一笔。</strong>
+            <div class="status-strip" aria-label="Run status">
+              <span>残页 <b id="insight-count">0</b></span>
+              <span>梦稳 <b id="stability-count">86</b>%</span>
+              <span>命数 <b id="resolved-count">0/5</b></span>
+            </div>
+          </div>
+          <button id="reset-run" class="icon-button" type="button" aria-label="重置路径" title="重置路径">
+            ↻
+          </button>
+          <button id="dice-roll" class="dice-button" type="button" aria-label="掷骰随机移动" title="掷骰随机移动">
+            <b id="dice-result">-</b>
+            <span>掷骰</span>
+            <small>随机步</small>
+          </button>
+        </div>
+        <aside class="hud intro-panel" aria-label="Game introduction">
+          <div class="intro-kicker">玩法册页</div>
+          <h2>入梦改命</h2>
+          <p>你持通灵玉进入太虚幻境，在大观园梦境里替一段命数落笔。</p>
+          <div class="intro-steps">
+            <div>
+              <span>01</span>
+              <strong>拾花签</strong>
+              <small>收集判词残页，解锁深层读法。</small>
+            </div>
+            <div>
+              <span>02</span>
+              <strong>入梦节点</strong>
+              <small>靠近葬花冢、夜宴、抄检等事件。</small>
+            </div>
+            <div>
+              <span>03</span>
+              <strong>调五心</strong>
+              <small>完成五处梦节点，生成终局判词。</small>
+            </div>
+          </div>
+          <div class="map-legend" aria-label="Map legend">
+            <div class="legend-title">地图图例</div>
+            <div class="legend-grid">
+              <span><i class="legend-swatch swatch-path"></i>石径：低耗可走</span>
+              <span><i class="legend-swatch swatch-node"></i>梦节点：入梦选择</span>
+              <span><i class="legend-swatch swatch-shard"></i>花签：残页 +1</span>
+              <span><i class="legend-swatch swatch-forest"></i>竹林：可走中耗</span>
+              <span><i class="legend-swatch swatch-water"></i>荷池：可走高耗</span>
+              <span><i class="legend-swatch swatch-wall"></i>府墙：不可走</span>
+              <span><i class="legend-swatch swatch-rift"></i>梦裂：可走高耗</span>
+            </div>
+          </div>
+          <div class="intro-controls">点击地图自动移动 · 掷骰随机步数 · E 或点击入梦</div>
+        </aside>
+        <aside class="hud side-panel" aria-label="Core telemetry">
+          <div class="panel-section">
+            <div class="section-title">太虚五心</div>
+            <canvas id="core-radar" width="180" height="180"></canvas>
+            <div class="meters" id="core-meters"></div>
+          </div>
+          <div class="panel-section tactic-panel">
+            <div class="section-title">当前策略</div>
+            <p id="tactic-text">先拾取花签残页，再解锁梦节点里的深层判词。</p>
+          </div>
+          <div class="panel-section">
+            <div class="section-title">判词批注</div>
+            <ol id="path-log" class="path-log"></ol>
+          </div>
+        </aside>
+        <div id="choice-panel" class="choice-panel" hidden>
+          <div class="choice-kicker">太虚判定</div>
+          <h1 id="choice-title">未命名梦境</h1>
+          <p id="choice-body"></p>
+          <div id="choice-actions" class="choice-actions"></div>
+        </div>
+        <div id="ending-panel" class="ending-panel" hidden>
+          <div class="ending-kicker">终局判词</div>
+          <div id="ending-seal" class="ending-seal">情</div>
+          <h1 id="ending-title">绛珠还泪</h1>
+          <strong id="ending-subtitle">以情入梦，以泪成径。</strong>
+          <p id="ending-body"></p>
+          <button id="ending-reset" type="button">重开太虚册</button>
+        </div>
+        <div class="toast" id="toast">点击地图自动移动，或掷骰随机游园。</div>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
