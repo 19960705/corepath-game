@@ -1,0 +1,7 @@
+node_modules/
+dist/
+playtest/
+promo/
+.git/
+.DS_Store
+*.log
